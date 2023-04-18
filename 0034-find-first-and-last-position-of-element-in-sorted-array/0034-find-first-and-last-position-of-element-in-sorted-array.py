@@ -39,4 +39,4 @@ class Solution:
                     l = m + 1
         if len(nums) == 0 or (lowerbound == 0 and upperbound == 0 and nums[0] != target):
             return [-1, -1]
-        return [lowerbound, upperbound]            
+        return [lowerbound, upperbound]             

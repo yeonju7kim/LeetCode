@@ -1,4 +1,5 @@
-​```python
+``` python
+
 int BSearch(int arr[], int target) {
     int low = 0;
     int high = arr.length - 1;
@@ -16,4 +17,5 @@ int BSearch(int arr[], int target) {
     }
     return -1;
 }
+
 ```

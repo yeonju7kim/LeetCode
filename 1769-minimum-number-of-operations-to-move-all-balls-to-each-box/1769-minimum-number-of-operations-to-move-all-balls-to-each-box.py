@@ -4,17 +4,23 @@ class Solution(object):
         :type boxes: str
         :rtype: List[int]
         """
-        box_length = len(boxes)
-        left_count = [0] * box_length
-        right_count = [0] * box_length 
-        left_accum = [0] * box_length
-        right_accum = [0] * box_length
-        for i in range(1, box_length):
-            left_count[i] = left_count[i - 1] + int(boxes[i - 1])
-            right_count[box_length - i - 1] = right_count[box_length - i] + int(boxes[box_length - i]) 
-            left_accum[i] = left_count[i] + left_accum[i - 1]
-            right_accum[box_length - i - 1] = right_count[box_length - i - 1] + right_accum[box_length - i] 
-        for i in range(box_length):
-            left_accum[i] = left_accum[i] + right_accum[i]
-        return left_accum
-        
+        n = len(boxes)
+        result = [0] * n
+
+        # First pass: calculate left-to-right cumulative cost
+        count = 0
+        moves = 0
+        for i in range(n):
+            result[i] += moves
+            count += int(boxes[i])
+            moves += count
+
+        # Second pass: calculate right-to-left cumulative cost
+        count = 0
+        moves = 0
+        for i in range(n - 1, -1, -1):
+            result[i] += moves
+            count += int(boxes[i])
+            moves += count
+
+        return result
